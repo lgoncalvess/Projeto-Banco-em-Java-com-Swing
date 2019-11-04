@@ -1,6 +1,6 @@
-package conta_bancaria;
+package model;
 
-public abstract class ContaBancaria {
+public abstract class ContaBancaria{
 	private long numeroConta;
 	private double saldo;
 
@@ -18,4 +18,7 @@ public abstract class ContaBancaria {
 	//abstract methods
 	public abstract void sacar(double valor);
 	public abstract void depositar(double valor);
+	public void transferir(double valor, ContaBancaria ContaDe, ContaBancaria ContaPara) {
+		
+	}
 }
