@@ -1,6 +1,6 @@
-package conta_bancaria;
+package model;
 
-public class ContaCorrente extends ContaBancaria{
+public class ContaCorrente extends ContaBancaria implements Imprimivel{
 	private double taxaDeOperacao;
 
 	public double getTaxaDeOperacao() {return taxaDeOperacao;}
@@ -12,10 +12,18 @@ public class ContaCorrente extends ContaBancaria{
 	}
 	
 	public void sacar(double valor) {
-		this.setSaldo(this.getSaldo() - valor - this.taxaDeOperacao);
+		if((valor + getTaxaDeOperacao()) <= this.getSaldo()) {
+			this.setSaldo(this.getSaldo() - valor - getTaxaDeOperacao());
+		}else {
+			//lançar uma exceção
+		}
 	}
 	
 	public void depositar(double valor) {
 		this.setSaldo((this.getSaldo() + valor) - this.taxaDeOperacao);
+	}
+	
+	public void mostrarDados() {
+		System.out.println("Saldo: " + this.getSaldo() + "\nNumero da Conta: " + this.getNumeroConta() + "\nTaxa de Operação: " + this.getTaxaDeOperacao());	
 	}
 }
